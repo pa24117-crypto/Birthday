@@ -14,7 +14,6 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-overflow:hidden;
 }
 
 .card{
@@ -33,23 +32,10 @@ border-radius:12px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-background:#ff1e4d;
 }
 
 h1{
 color:#ff2e63;
-}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-pointer-events:none;
 }
 
 </style>
@@ -57,8 +43,6 @@ pointer-events:none;
 </head>
 
 <body>
-
-<canvas id="confetti"></canvas>
 
 <div class="card" id="page1">
 <h2>🎁 Want to see what Patel Jatin sent you?</h2>
@@ -68,71 +52,15 @@ pointer-events:none;
 
 <div class="card" id="page2" style="display:none;">
 <h1>🎉 Happy Birthday My Friend! 🎂</h1>
-<p>May your life be full of happiness, success, and amazing memories!</p>
-<p>Enjoy your special day! 🥳</p>
-<p><b>– From Patel Jatin 💙</b></p>
+<p>Wishing you happiness, success, and lots of fun!</p>
+<p>– From Patel Jatin 💙</p>
 </div>
-
-<audio id="music">
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 
 function openGift(){
-
 document.getElementById("page1").style.display="none";
 document.getElementById("page2").style.display="block";
-
-document.getElementById("music").play();
-
-startConfetti();
-
-}
-
-var canvas=document.getElementById("confetti");
-var ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-var confetti=[];
-
-for(let i=0;i<150;i++){
-confetti.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*6+2,
-d:Math.random()*150
-});
-}
-
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-for(let i=0;i<confetti.length;i++){
-
-let c=confetti[i];
-
-ctx.beginPath();
-ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
-ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
-ctx.fill();
-
-c.y+=2;
-
-if(c.y>canvas.height){
-c.y=0;
-c.x=Math.random()*canvas.width;
-}
-
-}
-
-requestAnimationFrame(draw);
-}
-
-function startConfetti(){
-draw();
 }
 
 </script>
